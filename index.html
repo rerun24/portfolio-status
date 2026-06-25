@@ -111,6 +111,7 @@ const API = "https://jckrrcrcioxrntlwynht.supabase.co/functions/v1/portfolio-api
 const KEYNAME = "pp_key";
 const esc = s => (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const sLabel = s => s==="green"?"Green":s==="yellow"?"Yellow":"Red";
+const fmtUpd = iso => { if(!iso) return "—"; const d=new Date(iso); return isNaN(d.getTime())?"—":d.toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}); };
 
 async function load(key){
   const r = await fetch(API, { headers: { "x-portfolio-key": key } });
@@ -138,13 +139,13 @@ function render(data){
     } else {
       mid=`<div class="field"><div class="lab">Next Action</div><div class="val">${esc(c.next_action)}</div></div>`;
     }
-    return `<div class="card"><div class="stripe ${esc(c.status)}"></div><div class="card-body"><div class="card-head"><div class="name">${esc(c.name)}</div>${chip(c.status)}</div><div class="summary-line">${esc(c.summary)}</div>${mid}<div class="meta"><span class="owner">Owner · <b>${esc(c.owner)}</b></span><span>Updated ${esc(c.updated_label)}</span></div></div></div>`;
+    return `<div class="card"><div class="stripe ${esc(c.status)}"></div><div class="card-body"><div class="card-head"><div class="name">${esc(c.name)}</div>${chip(c.status)}</div><div class="summary-line">${esc(c.summary)}</div>${mid}<div class="meta"><span class="owner">Owner · <b>${esc(c.owner)}</b></span><span>Updated ${fmtUpd(c.updated_at)}</span></div></div></div>`;
   }).join("");
 
   let rows="";
   companies.forEach(c=>{
-    rows+=`<tr><td class="name-cell">${esc(c.name)}</td><td>${tdot(c.status)}</td><td>${esc(c.summary)}</td><td>${esc(c.priorities||"—")}</td><td>${esc(c.risks||"—")}</td><td>${esc(c.next_action)}</td><td>${esc(c.owner||"—")}</td><td>${esc(c.updated_label||"—")}</td></tr>`;
-    subsOf(c.id).forEach(s=>{rows+=`<tr class="sub-row"><td>↳ ${esc(s.name)}</td><td>${tdot(s.status)}</td><td>${esc(s.summary)}</td><td>—</td><td>—</td><td>${esc(s.next_action)}</td><td>${esc(c.owner||"—")}</td><td>${esc(s.updated_label||"—")}</td></tr>`;});
+    rows+=`<tr><td class="name-cell">${esc(c.name)}</td><td>${tdot(c.status)}</td><td>${esc(c.summary)}</td><td>${esc(c.priorities||"—")}</td><td>${esc(c.risks||"—")}</td><td>${esc(c.next_action)}</td><td>${esc(c.owner||"—")}</td><td>${fmtUpd(c.updated_at)}</td></tr>`;
+    subsOf(c.id).forEach(s=>{rows+=`<tr class="sub-row"><td>↳ ${esc(s.name)}</td><td>${tdot(s.status)}</td><td>${esc(s.summary)}</td><td>—</td><td>—</td><td>${esc(s.next_action)}</td><td>${esc(c.owner||"—")}</td><td>${fmtUpd(s.updated_at)}</td></tr>`;});
   });
 
   const nm=[["wins","Wins"],["questions","Open Questions"],["decisions","Decisions Needed"],["followups","Follow-ups"]];
