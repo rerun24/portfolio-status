@@ -5,70 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio Status Dashboard</title>
 <style>
-:root{color-scheme:light;--bg:#f4f3ef;--panel:#fff;--ink:#1c1b19;--ink-soft:#56544f;--ink-faint:#8c8a83;--line:#e7e5df;--line-strong:#d8d5cd;--green:#2f7d57;--green-bg:#e9f3ed;--green-ring:#bfe0cd;--amber:#b9821a;--amber-bg:#f7efdd;--amber-ring:#ecd9ab;--red:#b5402f;--red-bg:#f6e7e3;--red-ring:#ecc4bb;--radius:16px;--shadow:0 1px 2px rgba(28,27,25,.04),0 8px 24px rgba(28,27,25,.05)}
+:root{color-scheme:light;--bg:#f4f3ef;--panel:#fff;--ink:#1c1b19;--ink-soft:#56544f;--ink-faint:#8c8a83;--line:#e7e5df;--line-strong:#d8d5cd;--green:#2f7d57;--green-bg:#e9f3ed;--green-ring:#bfe0cd;--amber:#b9821a;--amber-bg:#f7efdd;--amber-ring:#ecd9ab;--red:#b5402f;--red-bg:#f6e7e3;--red-ring:#ecc4bb;--radius:14px;--shadow:0 1px 2px rgba(28,27,25,.04),0 8px 24px rgba(28,27,25,.05)}
 *{box-sizing:border-box}html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
 .serif{font-family:ui-serif,Georgia,"Times New Roman",serif}
-.wrap{max-width:1180px;margin:0 auto;padding:32px 28px 80px}
-.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:22px}
-.masthead h1{font-size:30px;line-height:1.1;margin:0;letter-spacing:-.01em;font-weight:600}
-.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:8px}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 28px 64px}
+.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:18px}
+.masthead h1{font-size:27px;line-height:1.1;margin:0;letter-spacing:-.01em;font-weight:600}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:6px}
 .updated{font-size:12px;color:var(--ink-faint);text-align:right}
 .updated b{color:var(--ink-soft);font-weight:600;display:block}
-.reload{margin-top:8px;font-size:11px;color:var(--ink-faint);background:none;border:1px solid var(--line-strong);border-radius:8px;padding:4px 10px;cursor:pointer}
+.reload{margin-top:6px;font-size:11px;color:var(--ink-faint);background:none;border:1px solid var(--line-strong);border-radius:8px;padding:4px 10px;cursor:pointer}
 .reload:hover{color:var(--ink);border-color:var(--ink-faint)}
-.summary{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;margin-bottom:24px}
-.summary-top{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:18px}
-.health-pill{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:9px 16px;border-radius:999px}
-.health-pill .dot{width:11px;height:11px;border-radius:50%}
-.health-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:18px}
-.metric{background:var(--panel);padding:14px 16px}
-.metric .n{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1}
-.metric .l{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;margin-top:6px;font-weight:600}
-.metric .n.g{color:var(--green)}.metric .n.y{color:var(--amber)}.metric .n.r{color:var(--red)}
-.callouts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.callout{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg)}
-.callout .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.callouts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.callout{border:1px solid var(--line);border-radius:12px;padding:12px 16px;background:var(--panel);box-shadow:var(--shadow)}
+.callout .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;display:flex;align-items:center;gap:7px;margin-bottom:5px}
 .callout .k .tag{width:7px;height:7px;border-radius:50%}
-.callout .v{font-size:14px;color:var(--ink);font-weight:500}
-.section-head{display:flex;align-items:baseline;gap:12px;margin:34px 2px 16px}
+.callout .v{font-size:13.5px;color:var(--ink);font-weight:500}
+.section-head{display:flex;align-items:baseline;gap:12px;margin:8px 2px 14px}
 .section-head h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin:0}
 .section-head .rule{flex:1;height:1px;background:var(--line)}
-.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--ink-soft)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-soft)}
 .legend span{display:inline-flex;align-items:center;gap:7px}
 .legend .dot{width:9px;height:9px;border-radius:50%}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
 .card .stripe{height:4px;width:100%}
 .stripe.green{background:var(--green)}.stripe.yellow{background:var(--amber)}.stripe.red{background:var(--red)}
-.card-body{padding:18px 20px 20px}
+.card-body{padding:15px 18px 14px;display:flex;flex-direction:column;flex:1}
 .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.card-head .name{font-size:18px;font-weight:600;letter-spacing:-.01em}
-.status-chip{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px 5px 9px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
-.status-chip .dot{width:9px;height:9px;border-radius:50%}
+.card-head .name{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.status-chip{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px 4px 8px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+.status-chip .dot{width:8px;height:8px;border-radius:50%}
 .status-chip.green{color:var(--green);background:var(--green-bg);border-color:var(--green-ring)}.status-chip.green .dot{background:var(--green)}
 .status-chip.yellow{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-ring)}.status-chip.yellow .dot{background:var(--amber)}
 .status-chip.red{color:var(--red);background:var(--red-bg);border-color:var(--red-ring)}.status-chip.red .dot{background:var(--red)}
-.summary-line{font-size:14px;color:var(--ink-soft);margin:10px 0 16px;font-style:italic}
-.field{margin-bottom:13px}
-.field .lab{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-bottom:3px}
-.field .val{font-size:13.5px;color:var(--ink)}
-.meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:4px;padding-top:12px;font-size:12px;color:var(--ink-faint)}
+.summary-line{font-size:13px;color:var(--ink-soft);margin:8px 0 11px;font-style:italic}
+.field{margin-bottom:9px}
+.field .lab{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-bottom:2px}
+.field .val{font-size:13px;color:var(--ink)}
+.meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:auto;padding-top:10px;font-size:11.5px;color:var(--ink-faint)}
 .meta .owner b{color:var(--ink-soft);font-weight:600}
-.card.parent{grid-column:1/-1}
-.subs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px}
-.sub{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--bg)}
-.sub-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.sub-head .sname{font-size:13.5px;font-weight:600}
-.sub .ssum{font-size:12.5px;color:var(--ink-soft);margin:7px 0 9px;font-style:italic}
-.sub .snext{font-size:12px;color:var(--ink)}
-.sub .snext .lab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-right:5px}
-.mini-chip{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid transparent}
-.mini-chip .dot{width:7px;height:7px;border-radius:50%}
-.mini-chip.green{color:var(--green);background:var(--green-bg);border-color:var(--green-ring)}.mini-chip.green .dot{background:var(--green)}
-.mini-chip.yellow{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-ring)}.mini-chip.yellow .dot{background:var(--amber)}
-.mini-chip.red{color:var(--red);background:var(--red-bg);border-color:var(--red-ring)}.mini-chip.red .dot{background:var(--red)}
+.sublist{margin:2px 0 4px}
+.sublist .lab{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;margin-bottom:6px}
+.subrow{display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px dashed var(--line)}
+.subrow:first-of-type{border-top:none}
+.subrow .sdot{width:8px;height:8px;border-radius:50%;flex:none}
+.subrow .sdot.green{background:var(--green)}.subrow .sdot.yellow{background:var(--amber)}.subrow .sdot.red{background:var(--red)}
+.subrow .sn{font-size:12.5px;font-weight:600;color:var(--ink);flex:none}
+.subrow .sx{font-size:11.5px;color:var(--ink-faint);margin-left:auto;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .table-wrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
 thead th{text-align:left;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;padding:13px 14px;background:var(--bg);border-bottom:1px solid var(--line-strong);white-space:nowrap}
@@ -103,7 +88,7 @@ tbody td.name-cell{color:var(--ink);font-weight:600}
 .login button{width:100%;padding:11px;font-size:14px;font-weight:600;color:#fff;background:var(--ink);border:none;border-radius:10px;cursor:pointer}
 .login .err{color:var(--red);font-size:12.5px;margin-bottom:10px;min-height:1px}
 .hidden{display:none}
-@media(max-width:820px){.cards,.notes,.callouts,.subs{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.wrap{padding:22px 16px 64px}}
+@media(max-width:860px){.cards,.notes,.callouts{grid-template-columns:1fr}.wrap{padding:20px 16px 56px}}
 </style>
 </head>
 <body>
@@ -139,25 +124,21 @@ function render(data){
   const m = {}; (data.meta||[]).forEach(x=>m[x.key]=x.value);
   const companies = items.filter(i=>i.kind==="company").sort((a,b)=>a.sort-b.sort);
   const subsOf = id => items.filter(i=>i.kind==="sub"&&i.parent===id).sort((a,b)=>a.sort-b.sort);
-  let g=0,y=0,r=0; companies.forEach(c=>{c.status==="green"?g++:c.status==="yellow"?y++:r++;});
-  let health="Healthy",hc="var(--green)",hb="var(--green-bg)";
-  if(r>0){health="Attention Required";hc="var(--red)";hb="var(--red-bg)";}
-  else if(y>0){health="Stable — Watching";hc="var(--amber)";hb="var(--amber-bg)";}
   const title = m.portfolio_title||"Portfolio Status Dashboard";
   const now = new Date().toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
-  const chip=(s,cls)=>`<span class="${cls} ${esc(s)}"><span class="dot"></span>${sLabel(s)}</span>`;
+  const chip=(s)=>`<span class="status-chip ${esc(s)}"><span class="dot"></span>${sLabel(s)}</span>`;
   const tdot=s=>`<span class="tdot ${esc(s)}"><span class="d"></span>${sLabel(s)}</span>`;
 
   const cards = companies.map(c=>{
     const subs=subsOf(c.id);
-    let subsHtml="";
+    let mid;
     if(subs.length){
-      subsHtml=`<div class="field" style="margin-top:4px"><div class="lab">Sub-Initiatives</div></div><div class="subs">`+
-        subs.map(s=>`<div class="sub"><div class="sub-head"><span class="sname">${esc(s.name)}</span>${chip(s.status,"mini-chip")}</div><div class="ssum">${esc(s.summary)}</div><div class="snext"><span class="lab">Next</span>${esc(s.next_action)}</div></div>`).join("")+`</div>`;
+      mid=`<div class="sublist"><div class="lab">Sub-Initiatives</div>`+
+        subs.map(s=>`<div class="subrow"><span class="sdot ${esc(s.status)}"></span><span class="sn">${esc(s.name)}</span><span class="sx">${esc(s.next_action)}</span></div>`).join("")+`</div>`;
+    } else {
+      mid=`<div class="field"><div class="lab">Next Action</div><div class="val">${esc(c.next_action)}</div></div>`;
     }
-    const pri=c.priorities?`<div class="field"><div class="lab">Key Priorities</div><div class="val">${esc(c.priorities)}</div></div>`:"";
-    const rk=c.risks?`<div class="field"><div class="lab">Risks / Blockers</div><div class="val">${esc(c.risks)}</div></div>`:"";
-    return `<div class="card ${subs.length?"parent":""}"><div class="stripe ${esc(c.status)}"></div><div class="card-body"><div class="card-head"><div class="name">${esc(c.name)}</div>${chip(c.status,"status-chip")}</div><div class="summary-line">${esc(c.summary)}</div>${pri}${rk}<div class="field"><div class="lab">Next Action</div><div class="val">${esc(c.next_action)}</div></div>${subsHtml}<div class="meta"><span class="owner">Owner · <b>${esc(c.owner)}</b></span><span>Updated ${esc(c.updated_label)}</span></div></div></div>`;
+    return `<div class="card"><div class="stripe ${esc(c.status)}"></div><div class="card-body"><div class="card-head"><div class="name">${esc(c.name)}</div>${chip(c.status)}</div><div class="summary-line">${esc(c.summary)}</div>${mid}<div class="meta"><span class="owner">Owner · <b>${esc(c.owner)}</b></span><span>Updated ${esc(c.updated_label)}</span></div></div></div>`;
   }).join("");
 
   let rows="";
@@ -176,14 +157,8 @@ function render(data){
   document.getElementById("app").innerHTML=`
     <div class="masthead"><div><div class="eyebrow">Operating Review</div><h1 class="serif">${esc(title)}</h1></div>
     <div class="updated">Last loaded<b>${now}</b><button class="reload" id="reloadBtn">Reload</button></div></div>
-    <div class="summary"><div class="summary-top"><div class="health-label">Overall Portfolio Health</div>
-    <div class="health-pill" style="background:${hb};color:${hc}"><span class="dot" style="background:${hc}"></span>${health}</div></div>
-    <div class="metrics"><div class="metric"><div class="n">${companies.length}</div><div class="l">Total Companies</div></div>
-    <div class="metric"><div class="n g">${g}</div><div class="l">Green</div></div>
-    <div class="metric"><div class="n y">${y}</div><div class="l">Yellow</div></div>
-    <div class="metric"><div class="n r">${r}</div><div class="l">Red</div></div></div>
     <div class="callouts"><div class="callout"><div class="k"><span class="tag" style="background:var(--red)"></span>Biggest Risk This Week</div><div class="v">${esc(m.biggest_risk)}</div></div>
-    <div class="callout"><div class="k"><span class="tag" style="background:var(--ink)"></span>Highest Priority This Week</div><div class="v">${esc(m.top_priority)}</div></div></div></div>
+    <div class="callout"><div class="k"><span class="tag" style="background:var(--ink)"></span>Highest Priority This Week</div><div class="v">${esc(m.top_priority)}</div></div></div>
     <div class="section-head"><h2>Companies</h2><div class="rule"></div><div class="legend"><span><span class="dot" style="background:var(--green)"></span>On track</span><span><span class="dot" style="background:var(--amber)"></span>Needs attention</span><span><span class="dot" style="background:var(--red)"></span>At risk</span></div></div>
     <div class="cards">${cards}</div>
     <div class="section-head"><h2>Quick Scan</h2><div class="rule"></div></div>
